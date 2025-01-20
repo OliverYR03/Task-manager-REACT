@@ -22,11 +22,8 @@ function LoginPage() {
     signin(data);
   });
   return (
-    <div className="backLogin bg-[#FF6767] w-screen h-screen">
-      <img
-        src={images.login1}
-        className="object-cover pointer-events-none	 absolute w-full h-full"
-      />
+    <div className="backLogin bg-[#FF6767] w-screen bg-login1 h-screen">
+  
       <div className="h-[calc(100vh-100px)] flex items-center justify-center">
         <div className="items-center bg-white opacity-100 p-10 rounded-md  w-[1236px] h-[767px] grid grid-cols-2">
           <div className=" flex flex-col content-center">
