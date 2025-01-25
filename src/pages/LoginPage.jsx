@@ -1,9 +1,8 @@
 import { useForm } from "react-hook-form";
-import { FcGoogle } from "react-icons/fc";
 import { useAuth } from "../context/AuthContext.";
-import { FaSquareXTwitter } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import Icons from "../components/Icons";
 import images from "../assets/images";
 
 function LoginPage() {
@@ -25,7 +24,7 @@ function LoginPage() {
     <div className="backLogin bg-[#FF6767] w-screen bg-login1 h-screen">
   
       <div className="h-[calc(100vh-100px)] flex items-center justify-center">
-        <div className="items-center bg-white opacity-100 p-10 rounded-md  w-[1236px] h-[767px] grid grid-cols-2">
+        <div className="items-center bg-white opacity-100 p-10 rounded-md  w-[1236px] h-auto grid grid-cols-2">
           <div className=" flex flex-col content-center">
             <h1 className="font-bold text-4xl">Sign in</h1>
             {signinErrors.map((error, i) => (
@@ -67,8 +66,8 @@ function LoginPage() {
             <p className="mt-16 flex gap-x-2 items-center "> 
               Or. Login with 
               <i className="fa-brands fa-square-facebook text-[#0068f0] text-3xl"></i>
-              <FcGoogle className="text-3xl" />
-              <FaSquareXTwitter className="text-3xl" />
+              <Icons.google className="text-3xl"/>
+              <Icons.twitter className="text-3xl"/>
               </p>
             <p className="flex gap-x-2 ">
               No tienes una cuenta ?

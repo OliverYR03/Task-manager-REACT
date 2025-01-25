@@ -11,31 +11,41 @@ import ProfilePage from "./pages/ProfilePage";
 import Navbar from "./components/Navbar";
 
 import ProtectedRoute from "./ProtectedRoute";
+import { StatusProvider } from "./context/StatusContext";
+import CategoriesPage from "./pages/CategoriesPage";
+import MyTaskPage from "./pages/MyTaskPage";
 
 function App() {
   return (
     <AuthProvider>
       <TaskProvider>
-        <BrowserRouter>
-          <main >
-            <Sidebar/>
-            <section className="">
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
-            
-              <Route element={<ProtectedRoute />}>
-                <Route path="/tasks" element={<TaskPage />} />
-                <Route path="/add-task" element={<TaskFormPage />} />
-                <Route path="/tasks/:id" element={<TaskFormPage />} />
-                <Route path="/profile" element={<ProfilePage />} />
-              </Route>
-            </Routes>
-            </section>
-          </main>
-        </BrowserRouter>
+        <StatusProvider>
+          <BrowserRouter>
+            <header>
+              <Navbar />
+            </header>
+            <main>
+              <Sidebar />
+              <section className="flex-1 flex justify-center">
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
+
+                  <Route element={<ProtectedRoute />}>
+                    <Route path="/tasks" element={<TaskPage />} />
+                    <Route path="/add-task" element={<TaskFormPage />} />
+                    <Route path="/tasks/:id" element={<TaskFormPage />} />
+                    <Route path="/mytasks" element={<MyTaskPage/>}/>
+
+                    <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="/categories" element={<CategoriesPage/>}/>
+                  </Route>
+                </Routes>
+              </section>
+            </main>
+          </BrowserRouter>
+        </StatusProvider>
       </TaskProvider>
     </AuthProvider>
   );

@@ -39,7 +39,8 @@ function RegisterPage() {
                 <img src={images.uLastName} className="absolute p-3 min-w-10" />
                 <input
                   type="text"
-                  name="username"
+                  name="firstname"
+                  {...register("firstname", { required: true })}
                   placeholder="Enter Fist Name"
                   className=" pl-16 font-medium border rounded-lg px-4 py-3 my-3 border-[#565454] placeholder:text-base h-[55px] w-[559px]"
                 />
@@ -48,7 +49,8 @@ function RegisterPage() {
                 <img src={images.uName} className="absolute p-3 min-w-10" />
                 <input
                   type="text"
-                  name="username"
+                  name="lastname"
+                  {...register("lastname", { required: true })}
                   placeholder="Enter Last Name"
                   className="pl-16 font-medium border rounded-lg px-4 py-3 my-3 border-[#565454] placeholder:text-base h-[55px] w-[559px]"
                 />
@@ -115,7 +117,7 @@ function RegisterPage() {
                 )}
               </div>
               <div className=" mt-1 remember items-center flex flex-row">
-                <input type="checkbox" className="w-4 h-4" />
+                <input type="checkbox" required className="w-4 h-4" />
                 <p className="ml-6 items-center align-middle font-medium">
                   I agree all terms
                 </p>

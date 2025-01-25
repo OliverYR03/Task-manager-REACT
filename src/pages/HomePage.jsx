@@ -1,7 +1,10 @@
+import Icons from "../components/Icons";
+
 function HomePage() {
+
   return (
-    <div>HomePage</div>
-  )
+     <div className="">Hola pendejos</div>
+  );
 }
 
-export default HomePage
+export default HomePage;

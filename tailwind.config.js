@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      gridTemplateColumns:{
+        mytaskp: '536px 611px'
+      },
       backgroundImage: {
         "login1" : "url('./src/assets/login/back.png')",
         "login2" : "url('./src/assets/login/loginpic.png')",
