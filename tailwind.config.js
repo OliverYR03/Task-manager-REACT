@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       gridTemplateColumns:{
-        mytaskp: '536px 611px'
+        mytaskp: '536px 611px',
+        dashboard: '536px 466px'
       },
       backgroundImage: {
         "login1" : "url('./src/assets/login/back.png')",

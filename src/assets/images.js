@@ -21,6 +21,17 @@ import card2 from './card2.jpg'
 import edit from './icons/action/edit.svg';
 import deleted from './icons/action/delete.svg';
 import notStarted from './card/notStarted.svg'
+import vital1 from './vital1.jpg'
+import vital2 from './vital2.jpg'
+import invite from './icons/navbar/invite.svg'
+import pending from './icons/navbar/pending.svg'
+import friend1 from './icons/navbar/friend (1).jpg'
+import friend2 from './icons/navbar/friend (2).jpg'
+import friend3 from './icons/navbar/friend (3).jpg'
+import friend4 from './icons/navbar/friend (4).jpg'
+import friend5 from './icons/navbar/friend (5).jpg'
+import taskcompleted from './icons/navbar/taskcompeted.svg'
+import taskstatus from './icons/navbar/taskstatus.svg'
 
 
 export default {
@@ -40,6 +51,17 @@ export default {
     "card1": card1,
     "edit":edit,
     "deleted":deleted,
+    "vital1": vital1,
+    "vital2": vital2,
+    "invite": invite,
+    "pending": pending,
+    "friend1": friend1,
+    "friend2": friend2,
+    "friend3": friend3,
+    "friend4": friend4,
+    "friend5": friend5,
+    "taskcompleted": taskcompleted,
+    "taskstatus": taskstatus,
     "icons": [
         categories,
         dashboard,

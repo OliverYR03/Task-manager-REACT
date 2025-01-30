@@ -77,7 +77,7 @@ function Sidebar() {
                 </Link>
               </li>
               <li className="flex items-center h-[59px]">
-                <Link className="flex ">
+                <Link to="/vital-tasks" className="flex ">
                   <Icons.exclamation size={24} className="text-white " />
                   Vital Task
                 </Link>

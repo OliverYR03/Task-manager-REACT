@@ -2,58 +2,33 @@ import { useTasks } from "../context/TaskContext";
 import { Link } from "react-router-dom";
 import days from "dayjs";
 import utc from "dayjs/plugin/utc";
+import images from "../assets/images";
 days.extend(utc);
 
 function TaskCard({ task }) {
   const { deleteTask } = useTasks();
-
+  // bg-[rgba(161,163,171,0.13)]  border-gray-400 border-2
   return (
-    // <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md">
-    //     <header className="flex justify-between">
-    //         <h1 className=" text-2xl font-bold">{task.title}</h1>
-    //         <div className="flex gap-x-2 items-center">
-    //             <button onClick={() => {
-    //               deleteTask(task._id)
-    //             }}>Delete</button>
-    //             <Link to={`/tasks/${task._id}`}>Edit</Link>
-    //         </div>
-    //     </header>
-    //         <p className="text-slate-300">{task.description}</p>
-    //         <p>{days(task.date).utc().format("DD/MM/YYYY")}</p>
-    // </div>
-
-    <div className="card flex flex-col p-6 bg-white justify-between rounded-[20px] h-auto w-[350px]">
-      <div className="c-top flex justify-between align-middle">
-        <p className="left text-[13px] font-medium">
-          <i className="fa-solid fa-circle text-red-600 "></i> DESIGN SYSTEM
-        </p>
-        <p className="right align-middle">
-          <i className="fa-solid fa-trash pr-2 cursor-pointer" onClick={() => {
-                    deleteTask(task._id)
-                  }}></i>
-          <Link to={`/tasks/${task._id}`}><i className="fa-sharp fa-solid fa-pen-to-square"></i></Link>  
-          
-        </p>
+    <div className="cardTask font-['Inter'] mt-4 p-3 pl-10 rounded-2xl border-gray-400 border-2">
+      <div className="cardTop flex gap-3 font-semibold text-base items-center justify-between">
+        <img src={images.notStarted} className=" ml-[-20px] w-3 h-3" />
+        <h4 className="justify-start">{task.title}</h4>
+        <i className="fa-light fa-ellipsis-stroke text-[#A1A3AB]"></i>
       </div>
-      <div className="c-body">
-        <p className="c-title">{task.title}</p>
-        <p className="c-text text-[15px] text-justify">
-        {task.description}
-        </p>
-        <p className="c-text text-[15px] text-justify text-red-400 font-bold">
-        {task.status.title}
-        </p>
-        <p className="c-text text-[15px] text-justify text-red-500 font-bold">
-        {task.priority.title}
-        </p>
-        <p>{days(task.date).utc().format("DD/MM/YYYY")}</p>
+      <div className="cardDesc flex items-center justify-between text-[#747474] font-normal">
+        <p>{task.description}</p>
+        <img src={images.card1} alt="" lassName="rounded-[14px]" />
       </div>
-      <div className="c-seen text-[25px]">
-        <span>
-          
-          <i className="fa-light fa-circle-user"></i>
-        </span>
-
+      <div className="cardInfo flex justify-between font-normal text-[10px] mt-2">
+        <h4>
+          Priority <span className="text-[#F21E1E]">{task.priority.title}</span>
+        </h4>
+        <h4>
+          Status <span className="text-[#F21E1E]">{task.status.title}</span>
+        </h4>
+        <h4 className="text-[#A1A3AB]">
+          Created on <span>{days(task.date).utc().format("DD/MM/YYYY")}</span>
+        </h4>
       </div>
     </div>
   );

@@ -14,6 +14,8 @@ import ProtectedRoute from "./ProtectedRoute";
 import { StatusProvider } from "./context/StatusContext";
 import CategoriesPage from "./pages/CategoriesPage";
 import MyTaskPage from "./pages/MyTaskPage";
+import VitalTaskPage from "./pages/VitalTaskPage";
+import TaskInfoPage from "./pages/TaskInfoPage";
 
 function App() {
   return (
@@ -35,8 +37,10 @@ function App() {
                   <Route element={<ProtectedRoute />}>
                     <Route path="/tasks" element={<TaskPage />} />
                     <Route path="/add-task" element={<TaskFormPage />} />
-                    <Route path="/tasks/:id" element={<TaskFormPage />} />
+                    <Route path="/tasks/:id" element={<TaskInfoPage />} />
+
                     <Route path="/mytasks" element={<MyTaskPage/>}/>
+                    <Route path="/vital-tasks" element={<VitalTaskPage />}/>
 
                     <Route path="/profile" element={<ProfilePage />} />
                     <Route path="/categories" element={<CategoriesPage/>}/>
