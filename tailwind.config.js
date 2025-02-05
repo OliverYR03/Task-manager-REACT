@@ -7,6 +7,7 @@ export default {
   theme: {
     extend: {
       gridTemplateColumns:{
+        createtask: '600px 200px',
         mytaskp: '536px 611px',
         dashboard: '536px 466px'
       },

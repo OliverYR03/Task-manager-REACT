@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.";
 import { useState } from "react";
 import Icons from "./Icons";
-import DropDownProfile from "./DropDownProfile";
 
 function Navbar() {
   const { isAuthenticated} = useAuth();
@@ -88,9 +87,6 @@ function Navbar() {
             <button className=" bg-red-400 rounded-lg h-9 w-9 cursor-pointer flex justify-center items-center">
               <Icons.bell size={15} color="white" className="font-bold" />
             </button>
-            <Link to="/add-task" className="bg-indigo-500 px-4 py-1 ">
-    //             Nueva Tarea
-    //           </Link>
             <button className=" bg-red-400 rounded-lg h-9 w-9 cursor-pointer flex justify-center items-center">
               <Icons.Calendar size={15} color="white" />
             </button>

@@ -4,17 +4,13 @@ import { useTasks } from "../context/TaskContext";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
-import { useStatuses } from "../context/StatusContext";
 
 dayjs.extend(utc);
 
 function TaskInfoPage() {
-  const { getTask } = useTasks(); // Asegúrate de que getPriority esté en tu contexto
-  const { getPriority, getStatus } = useStatuses();
+  const { getTask } = useTasks(); 
   const params = useParams();
   const [task, setTask] = useState();
-  const [priority, setPriority] = useState(); 
-  const [status, setStatus] = useState();
 
 
   useEffect(() => {
@@ -22,18 +18,10 @@ function TaskInfoPage() {
       const taskData = await getTask(params.id);
       if (taskData) {
         setTask(taskData);
-
-        // Obtener detalles de la priority
-        const priorityDetails = await getPriority(taskData.priority); // Pasa el id de la priority
-        console.log("Priority Details:", priorityDetails)
-        setPriority(priorityDetails);
-
-        const statusDetails = await getStatus(taskData.status);
-        setStatus(statusDetails)
       }
     }
     loadTask();
-  }, [params.id, getTask, getPriority, getStatus]);
+  }, [params.id, getTask]);
 
   if (!task) {
     return <div>Loading...</div>; // Muestra un mensaje de carga mientras se obtienen los datos
@@ -47,10 +35,10 @@ function TaskInfoPage() {
           <div className="flex flex-col mt-7">
             <h3 className="font-semibold text-base " >{task.title}</h3>
             <p className="text-xs font-normal mt-3">
-              Priority: <span className="text-[#F21E1E]">{priority?.title || "N/A"}</span>
+              Priority: <span className="text-[#F21E1E]">{task.priority || "N/A"}</span>
             </p>
             <p className="text-xs font-normal mt-3">
-              Status: <span className="text-[#F21E1E]" >{status?.title || "N/A"}</span>
+              Status: <span className="text-[#F21E1E]" >{task.status || "N/A"}</span>
             </p>
             <p className="text-xs font-normal mt-3 text-[#A1A3AB] text-[10px]">
               Created on: <span >{days(task.date).utc().format("DD/MM/YYYY")}</span>
@@ -60,13 +48,13 @@ function TaskInfoPage() {
         <div className="taskInfo mt-5">
           <div className="info-top text-justify">
             <h4 className="text-base font-bold font-['Inter'] text-[#747474]">
-              Task Title:{" "}
+              Task Title:
               <span className="text-base font-normal text-[#747474] font-['Inter']">
               {task.title}
               </span>
             </h4>
             <h4 className="text-base font-bold font-['Inter'] text-[#747474] mt-3">
-              Objective:{" "}
+              Objective:
               <span className="text-base font-normal text-[#747474] font-['Inter']">
                 Take the dog to the park and bring treats as well.
               </span>

@@ -17,16 +17,18 @@ function TaskCard({ task }) {
       </div>
       <div className="cardDesc flex items-center justify-between text-[#747474] font-normal">
         <p>{task.description}</p>
-        <img src={images.card1} alt="" lassName="rounded-[14px]" />
+        <img src={images.card1} alt="" className="rounded-[14px]" />
       </div>
       <div className="cardInfo flex justify-between font-normal text-[10px] mt-2">
-        <h4>
-          Priority <span className="text-[#F21E1E]">{task.priority.title}</span>
+        <h4 className="text-sm font-normal">
+          Priority <span className={`${task.priority === "Extreme" ? "text-[#F21E1E]" : 
+                 task.priority === "Moderate" ? "text-[#42ADE2]" : 
+                 task.priority === "Low" ? "text-[#05A301]" : "text-gray-600"}`}>{task.priority}</span>
         </h4>
-        <h4>
-          Status <span className="text-[#F21E1E]">{task.status.title}</span>
+        <h4 className="text-sm font-normal">
+          Status <span className="text-[#F21E1E]">{task.status}</span>
         </h4>
-        <h4 className="text-[#A1A3AB]">
+        <h4 className="text-[#A1A3AB] text-sm font-normal">
           Created on <span>{days(task.date).utc().format("DD/MM/YYYY")}</span>
         </h4>
       </div>

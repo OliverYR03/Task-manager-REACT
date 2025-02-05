@@ -51,6 +51,14 @@ export function TaskProvider({ children }) {
     }
   };
 
+  const getTaskPriority = async ({priority}) => {
+    try {
+      const res = await getTaskByPriority(priority);
+      return res.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const updateTask = async (id, task) => {
     try {
@@ -65,6 +73,7 @@ export function TaskProvider({ children }) {
         tasks,
         createTask,
         getTasks,
+        getTaskPriority,
         deleteTask,
         getTask,
         updateTask,
