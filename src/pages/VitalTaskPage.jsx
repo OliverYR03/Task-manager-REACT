@@ -6,7 +6,7 @@ import TaskCardVital from "../components/TaskCardVital";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
-
+import Swal from "sweetalert2";
 dayjs.extend(utc);
 
 function VitalTaskPage() {
@@ -18,16 +18,39 @@ function VitalTaskPage() {
   useEffect(() => {
     getTasks();
   }, []);
-
+  const confirmDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed && selectedTaskId) {
+        await deleteTask(selectedTaskId);
+        setModal(false);
+        getTasks();
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your task has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+  };
   async function loadTask(id) {
     if (!id) return;
     const task = await getTask(id);
     console.log(task);
     setValue("title", task.title);
     setValue("description", task.description);
+    setValue("default", images.default);
     setValue("date", dayjs(task.date).utc().format("YYYY-MM-DD"));
     setValue("priority", task.priority);
     setValue("status", task.status);
+    setValue("img", task.img);
   }
 
   const toggleModal = async (taskId) => {
@@ -79,8 +102,8 @@ function VitalTaskPage() {
             <div>
               <div className="taskDesc font-['Inter'] items-center flex gap-4">
                 <img
-                  src={images.vital1}
-                  alt="#"
+                  src={`${watch("img") || watch("default")}`}
+                  alt="Imagen"
                   className="w-[158px] h-[158px]"
                 />
                 <div className="flex flex-col mt-7">
@@ -179,13 +202,7 @@ function VitalTaskPage() {
                 <div className="action gap-4 flex mt-3 align-baseline justify-end">
                   <button
                     className="bg-[#FF6767] w-9 h-9 rounded-lg"
-                    onClick={async () => {
-                      if (selectedTaskId) {
-                        await deleteTask(selectedTaskId);
-                        setModal(false);
-                        getTasks();
-                      }
-                    }}
+                    onClick={confirmDelete}
                   >
                     <i className="fa-solid fa-trash text-white"></i>
                   </button>

@@ -5,7 +5,6 @@ import { AuthProvider } from "./context/AuthContext.";
 import { TaskProvider } from "./context/TaskContext";
 import TaskPage from "./pages/TaskPage";
 import TaskFormPage from "./pages/TaskFormPage";
-import HomePage from "./pages/HomePage";
 import Sidebar from "./components/Sidebar";
 import ProfilePage from "./pages/ProfilePage";
 import Navbar from "./components/Navbar";
@@ -28,7 +27,7 @@ function App() {
               <Sidebar />
               <section className="flex-1 flex justify-center">
                 <Routes>
-                  <Route path="/" element={<HomePage />} />
+                  <Route path="/" element={<LoginPage />} />
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
 
@@ -40,7 +39,7 @@ function App() {
                     <Route path="/mytasks" element={<MyTaskPage/>}/>
                     <Route path="/vital-tasks" element={<VitalTaskPage />}/>
 
-                    <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="/profile/:id" element={<ProfilePage />} />
                     <Route path="/categories" element={<CategoriesPage/>}/>
                   </Route>
                 </Routes>

@@ -27,11 +27,11 @@ function MyTaskPage() {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then(async (result) => {  // ⚠️ Hacemos que `then` sea asíncrono
+    }).then(async (result) => {
       if (result.isConfirmed && selectedTaskId) {
         await deleteTask(selectedTaskId);
         setModal(false);
-        getTasks(); // 🔄 Recargamos la lista de tareas
+        getTasks();
         Swal.fire({
           title: "Deleted!",
           text: "Your task has been deleted.",
@@ -40,16 +40,17 @@ function MyTaskPage() {
       }
     });
   };
-  
 
   async function loadTask(id) {
     if (!id) return;
     const task = await getTask(id);
     setValue("title", task.title);
+    setValue("default", images.default);
     setValue("description", task.description);
     setValue("date", dayjs(task.date).utc().format("YYYY-MM-DD"));
     setValue("priority", task.priority);
     setValue("status", task.status);
+    setValue("img", task.img);
   }
 
   const toggleModal = async (taskId) => {
@@ -78,14 +79,20 @@ function MyTaskPage() {
         </nav>
         <div className="todayTask  h-[calc(70vh)] no-scrollbar overflow-y-auto flex-1 ">
           <div className="grid auto-cols-auto gap-5">
-            {tasks.map((task) => (
-              <div key={task._id}>
-                <TaskCardVital
-                  task={task}
-                  onClick={() => toggleModal(task._id)}
-                />
-              </div>
-            ))}
+            {tasks.length === 0 ? (
+              <>No hay tareas, crea una pe causita wa :V</>
+            ) : (
+              <>
+                {tasks.map((task) => (
+                  <div key={task._id}>
+                    <TaskCardVital
+                      task={task}
+                      onClick={() => toggleModal(task._id)}
+                    />
+                  </div>
+                ))}
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -96,8 +103,8 @@ function MyTaskPage() {
             <div>
               <div className="taskDesc font-['Inter'] items-center flex gap-4">
                 <img
-                  src={images.vital1}
-                  alt="#"
+                  src={`${watch("img") || watch("default")}`} // Asegúrate de que watch("img") contiene la cadena base64 correctamente
+                  alt="Imagen"
                   className="w-[158px] h-[158px]"
                 />
                 <div className="flex flex-col mt-7">

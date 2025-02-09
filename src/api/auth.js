@@ -6,6 +6,6 @@ export const loginRequest = (user) => axios.post(`/login`, user)
 
 export const verifyTokenRequest = () => axios.get('/verify')
 
-export const updateUserRequest = (user) => axios.patch(`/profile/`, user)
+export const updateUserRequest = (id,user) => axios.put(`/profile/${id}`, user)
 
-export const getProfile = () => axios.get(`/profile/`)
+export const getProfile = (id) => axios.get(`/profile/:id`)

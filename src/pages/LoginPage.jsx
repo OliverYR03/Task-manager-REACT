@@ -22,7 +22,6 @@ function LoginPage() {
   });
   return (
     <div className="backLogin bg-[#FF6767] w-screen bg-login1 h-screen">
-  
       <div className="h-[calc(100vh-100px)] flex items-center justify-center">
         <div className="items-center bg-white opacity-100 p-10 rounded-md  w-[1236px] h-auto grid grid-cols-2">
           <div className=" flex flex-col content-center">
@@ -56,19 +55,23 @@ function LoginPage() {
                 <p className="text-red-500">password is required</p>
               )}
               <div className=" mt-1 remember items-center flex flex-row">
-                <input type="checkbox" className="text-[90px]"/>
+                <input type="checkbox" className="text-[90px]" />
                 <p className="items-center align-middle">Remember Me</p>
               </div>
-              <button type="submit" className="mt-4 bg-[#FF9090] text-white rounded-md w-[129px] h-[60px]">Login</button>
+              <button
+                type="submit"
+                className="mt-4 bg-[#FF9090] text-white rounded-md w-[129px] h-[60px]"
+              >
+                Login
+              </button>
             </form>
 
-
-            <p className="mt-16 flex gap-x-2 items-center "> 
-              Or. Login with 
+            <p className="mt-16 flex gap-x-2 items-center ">
+              Or. Login with
               <i className="fa-brands fa-square-facebook text-[#0068f0] text-3xl"></i>
-              <Icons.google className="text-3xl"/>
-              <Icons.twitter className="text-3xl"/>
-              </p>
+              <Icons.google className="text-3xl" />
+              <Icons.twitter className="text-3xl" />
+            </p>
             <p className="flex gap-x-2 ">
               No tienes una cuenta ?
               <Link to="/register" className="text-sky-500">

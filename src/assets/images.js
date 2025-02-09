@@ -33,6 +33,8 @@ import friend5 from './icons/navbar/friend (5).jpg'
 import taskcompleted from './icons/navbar/taskcompeted.svg'
 import taskstatus from './icons/navbar/taskstatus.svg'
 import imagesup from './icons/action/imgUp.svg'
+import defauld from './img/default.png'
+import defauldAvatar from './img/default-avatar.jpg'
 
 export default {
     "login1" : backLogin,
@@ -59,9 +61,11 @@ export default {
     "friend2": friend2,
     "friend3": friend3,
     "friend4": friend4,
+    "default": defauld,
     "friend5": friend5,
     "taskcompleted": taskcompleted,
     "taskstatus": taskstatus,
+    "default-avatar": defauldAvatar,
     "imgup": imagesup,
     "icons": [
         categories,

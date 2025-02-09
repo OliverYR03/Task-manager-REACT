@@ -15,17 +15,20 @@ function TaskPage() {
   const [preview, setPreview] = useState(null); // Para vista previa
   const { user } = useAuth();
   const [modal, setModal] = useState(false);
+  const navigate = useNavigate();
   const { register, handleSubmit, setValue, reset } = useForm();
   const { createTask } = useTasks();
-  const { params } = useParams();
+
+  const [image, setImage] = useState(null);
 
   const onSubmit = handleSubmit((data) => {
     const dataValid = {
       ...data,
+      img: image,
       date: data.date ? dayjs.utc(data.date).format() : dayjs.utc().format(),
     };
 
-    createTask(dataValid);
+    createTask(dataValid); 
     setModal(!modal);
   });
 
@@ -33,6 +36,10 @@ function TaskPage() {
     reset();
     setModal(!modal);
   };
+
+  const editTask = (id) => {
+    navigate(`/tasks/${id}`)
+  }
 
   useEffect(() => {
     getTasks();
@@ -46,17 +53,18 @@ function TaskPage() {
   const onDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];
     if (file) {
-      setValue("img", file); // Asegúrate de guardar el archivo
-      setPreview(URL.createObjectURL(file)); // Mostrar la vista previa
+      setValue("img", file); 
+      setPreview(URL.createObjectURL(file)); 
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result); 
+      };
+      reader.readAsDataURL(file); 
     }
   };
 
-  const todayTasks = tasks.filter((task) => {
-    const taskDate = dayjs(task.date);
-    return taskDate.isSame(today, "day");
-  });
 
-  const yesteTask = tasks.filter((task) => {
+  const todayTasks = tasks.filter((task) => {
     const taskDate = dayjs(task.date);
     return taskDate.isSame(today, "day");
   });
@@ -64,7 +72,7 @@ function TaskPage() {
   const completedTasks = tasks.filter((task) => task.status === "Completed");
 
   return (
-    <div className=" max-w-[1200px] bg-gray-200 h-[calc(80vh - 100px) w-screen font-['Inter'] p-9">
+    <div className=" max-w-[1200px]  h-[calc(80vh - 100px) w-screen font-['Inter'] p-9">
       <nav className="flex   items-center justify-between">
         <h2 className="text-4xl font-medium">
           Welcome back, {user.firstname} 👋🏻
@@ -104,21 +112,34 @@ function TaskPage() {
           </div>
           <div className="todayTask p-6  no-scrollbar overflow-y-auto flex-1 h-[400px]">
             <div className="grid auto-cols-auto gap-5">
-              {todayTasks.map((task) => (
-                <div key={task._id}>
-                  <TaskCard task={task} key={task._id} />
-                </div>
-              ))}
+              {todayTasks.length === 0 ? (
+                <> No hay tareas :V wa</>
+              ) : (
+                <>
+                  {todayTasks.map((task) => (
+                    <div key={task._id}>
+                      <TaskCard task={task} key={task._id} onClick={() => navigate(`/${task._id}`)}/>
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
           </div>
           <hr className="border-[#A1A3AB] border-1" />
           <div className="allTask">
             <div className="grid auto-cols-auto gap-5 no-scrollbar overflow-y-scroll h-[200px]">
-              {tasks.map((task) => (
-                <div key={task._id}>
-                  <TaskCard task={task} key={task._id} />
-                </div>
-              ))}
+              {tasks.length === 0 ? (
+                <>No tienes tareas todavía, ¿por qué no creas una?</>
+              ) : (
+                <>
+                  {tasks.map((task) => (
+                    <div key={task._id}>
+                      <TaskCard
+                       task={task} onClick={() => edit(task._id) } />
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -134,18 +155,25 @@ function TaskPage() {
           <div className="shadow-xl  rounded-xl h-[50vh] ">
             <nav>
               <h3 className="flex text-[#FF6767] font-medium p-6 ">
-                <img src={images.taskstatus} className="w-[28px] h-[31px]" />
+                <img src={images.taskcompleted} className="w-[25px] h-[27px]" />
                 Completed Task
               </h3>
             </nav>
             <div className="overflow-y-auto p-3">
-              <div className="grid auto-cols-auto gap-5 ">
-                {/* Aquí se muestran todas las tareas */}
-                {completedTasks.map((task) => (
-                  <div key={task._id}>
-                    <TaskCard task={task} />
-                  </div>
-                ))}
+              <div className="grid auto-cols-auto gap-5 p-5">
+                {completedTasks.length === 0 ? (
+                  <>
+                  <h4>Todavía no has completado ninguna tarea</h4>
+                  </>
+                ) : (
+                  <>
+                    {completedTasks.map((task) => (
+                      <div key={task._id}>
+                        <TaskCard task={task} onClick={() => navigate(`/${task._id}`)} />
+                      </div>
+                    ))}
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -216,7 +244,7 @@ function TaskPage() {
                             type="radio"
                             id="extreme"
                             {...register("priority")}
-                            value="extreme"
+                            value="Extreme"
                             className="w-4 h-4 accent-red-600 "
                           />
                         </div>
@@ -232,7 +260,7 @@ function TaskPage() {
                             type="radio"
                             id="moderate"
                             {...register("priority")}
-                            value="moderate"
+                            value="Moderate"
                             className="w-4 h-4 accent-blue-600"
                           />
                         </div>
@@ -248,7 +276,7 @@ function TaskPage() {
                             type="radio"
                             id="low"
                             {...register("priority")}
-                            value="low"
+                            value="Low"
                             className="w-4 h-4 accent-green-600"
                           />
                         </div>

@@ -10,12 +10,14 @@ function TaskCardVital({ task, onClick }) {
 
   // bg-[rgba(161,163,171,0.13)]
 
-  const toggleModal = () => {
-  }
+  const toggleModal = () => {};
 
   return (
-    <div className="cardTask font-['Inter'] mt-4 p-3 pl-10 rounded-2xl   border-gray-400 border-2 cursor-auto" onClick={onClick}>
-      <div className="cardTop flex gap-3 font-semibold text-base items-center justify-between" >
+    <div
+      className="cardTask font-['Inter'] mt-4 p-3 pl-10 rounded-2xl   border-gray-400 border-2 cursor-auto"
+      onClick={onClick}
+    >
+      <div className="cardTop flex gap-3 font-semibold text-base items-center justify-between">
         <div className="items-center flex gap-2">
           <i
             className={`ml-[-25px] fa-regular fa-circle ${
@@ -30,12 +32,17 @@ function TaskCardVital({ task, onClick }) {
           ></i>
           <h4>{task.title}</h4>
         </div>
-        
+
         <i className="fa-light fa-ellipsis-stroke text-[#A1A3AB]"></i>
       </div>
       <div className="cardDesc flex items-center justify-between text-[#747474] font-normal">
         <p className="pr-8">{task.description}</p>
-        <img src={images.vital1} alt="" className="rounded-[14px]" />
+        <img
+          src={`${task.img || images.default}`}
+
+          alt=""
+          className="rounded-[14px] w-[100px] h-[100px]"
+        />
       </div>
       <div className="cardInfo flex justify-between font-normal text-[10px] mt-2">
         <h4 className="text-sm">
