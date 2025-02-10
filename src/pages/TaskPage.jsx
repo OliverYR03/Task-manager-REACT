@@ -45,7 +45,6 @@ function TaskPage() {
     getTasks();
   }, []);
 
-  if (tasks.length === 0) return <h1> No hay tareas</h1>;
   const today = dayjs();
   const startOfWeek = dayjs().startOf("week");
   const endOfWeek = dayjs().endOf("week");
