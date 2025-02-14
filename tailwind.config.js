@@ -12,10 +12,10 @@ export default {
         dashboard: '536px 466px'
       },
       backgroundImage: {
-        "login1" : "url('./src/assets/login/back.png')",
-        "login2" : "url('./src/assets/login/loginpic.png')",
-        "register": "url('./src/assets/login/registerpic.png')",
-        "uLastname": "url('./src/assets/icons/register/user-lastname.svg')",
+        "login1" : "url('./img/back.png')",
+        "login2" : "url('./img/loginpic.png')",
+        "register": "url('./img/registerpic.png')",
+        "uLastname": "url('./img/user-lastname.svg')",
       }
     },
    
