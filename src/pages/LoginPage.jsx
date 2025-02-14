@@ -3,7 +3,6 @@ import { useAuth } from "../context/AuthContext.";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Icons from "../components/Icons";
-import images from "../assets/images";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -80,7 +79,7 @@ function LoginPage() {
             </p>
           </div>
           <div className="img flex justify-end align-bottom">
-            <img src={images.login2} alt="" className="w-[613px] h-[613px]" />
+            <img src="/img/loginpic.png" alt="" className="w-[613px] h-[613px]" />
           </div>
         </div>
       </div>

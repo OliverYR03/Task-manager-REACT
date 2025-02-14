@@ -1,7 +1,3 @@
-import backLogin from './login/back.png'
-import loginImg from './login/loginpic.png'
-import registerImg from './login/registerpic.png'
-import uLastName from './icons/register/user-lastname.svg'
 import uName from './icons/register/user-name.svg'
 import user from './icons/register/user.svg'
 import mail from './icons/register/mail.svg'
@@ -35,11 +31,9 @@ import taskstatus from './icons/navbar/taskstatus.svg'
 import imagesup from './icons/action/imgUp.svg'
 import defauld from './img/default.png'
 import defauldAvatar from './img/default-avatar.jpg'
+import uLastName from './login/user-lastname.svg'
 
 export default {
-    "login1" : backLogin,
-    "login2" : loginImg,
-    "register": registerImg,
     "uLastName": uLastName,
     "uName": uName,
     "user": user,

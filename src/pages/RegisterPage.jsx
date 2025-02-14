@@ -23,9 +23,9 @@ function RegisterPage() {
 
   return (
     <div className="backLogin bg-[#FF6767] w-screen h-screen bg-login1 cover">
-      <div className="h-[calc(100vh-100px)] flex items-center justify-center">
+      <div className="h-[80%] mt-20 flex items-center justify-center">
         <div className="items-center bg-white opacity-100 px-10  pb-8 rounded-md  w-[1236px] h-[767px] grid grid-cols-2">
-          <img src={images.register} className="w-[443px] h-[652px]" />
+          <img src="/img/registerpic.png" className="w-[443px] h-[652px]" />
 
           <div className="max-w-md w-full p-10 rounded-md">
             {registerErrors.map((error, i) => (
